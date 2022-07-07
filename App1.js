@@ -3,6 +3,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from "./Actions/store";
 import { createStackNavigator } from '@react-navigation/stack';
+import ListDate from "./Components/Pages/IotData/ListDate"; // Import the ListDate component
+import ListDate1 from "./Components/Pages/IotData/ListDate1"; // Import the ListDate component
 import Home from "./Components/Pages/home";
 import Login from "./Components/Pages/login";
 import Open from "./Components/Pages/Open";
@@ -90,10 +92,12 @@ const App1 = () => {
   return (
     <Provider store={store}>
       <NavigationContainer >
-        <Stack.Navigator initialRouteName="model2" screenOptions={{
+        <Stack.Navigator initialRouteName="Open" screenOptions={{
           headerShown: false
         }}
         >
+          <Stack.Screen name="ListDate" component={ListDate} />
+          <Stack.Screen name="ListDate1" component={ListDate1} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Open" component={Open} />

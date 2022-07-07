@@ -1,108 +1,108 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet,Text, View, Image } from 'react-native';
-import {Provider as PaperProvider} from 'react-native-paper';
-import {IconButton,Colors} from 'react-native-paper';
-import FormButton from "../Form/FormButton";
-const Home = (props) => {
-  return (
-    <PaperProvider><View style={styles.BigContainer}>
-    <View style={styles.ExtraSpaceUp}>
-    </View>
-    <View style={styles.BoxLayout}>
-    <View style={styles.LeftBox}>
-    <View style={styles.LeftBox1}></View>
-    <View style={styles.LeftBox2}>
-      <IconButton icon="mail" color={Colors.red500} size={50} onPress={() => props.navigation.navigate("SearchPatient")}></IconButton>
-      <Text style={styles.title}>item.title</Text>
+import React from 'react';
+import { 
+    View, 
+    Text, 
+    TouchableOpacity, 
+    Dimensions,
+    StyleSheet,
+    StatusBar,
+    Image
+} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useTheme } from '@react-navigation/native';
+
+const SplashScreen = (props) => {
+    const { colors } = useTheme();
+
+    return (
+      <View style={styles.container}>
+          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+        <View style={styles.header}>
+            <Animatable.Image 
+                animation="bounceIn"
+                duraton="1500"
+            source={require('./logo1.png')}
+            style={styles.logo}
+            resizeMode="stretch"
+            />
+        </View>
+        <Animatable.View 
+            style={[styles.footer, {
+                backgroundColor: colors.background
+            }]}
+            animation="fadeInUpBig"
+        >
+            <Text style={[styles.title, {
+                color: colors.text
+            }]}>Stay connected with everyone!</Text>
+            <Text style={styles.text}>Sign in with account</Text>
+            <View style={styles.button}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("Login")}>
+                    <Text style={styles.textSign}>Get Started</Text>
+                    <MaterialIcons 
+                        name="navigate-next"
+                        color="#fff"
+                        size={20}
+                    />
+            </TouchableOpacity>
+            </View>
+        </Animatable.View>
       </View>
-    </View>
-    <View style={styles.RightBox}>
-    <View style={styles.RightBox1}><IconButton icon="mail" color={Colors.red500} size={50} onPress={() => props.navigation.navigate("SearchPatient")}></IconButton>
-      <Text style={styles.title}>item.title</Text></View>
-    <View style={styles.RightBox2}></View>
-    </View>
-    </View>
-    
-    <View style={styles.ExtraSpaceDown}>
-    </View>
-  </View></PaperProvider>
-     
-  );
-}
+    );
+};
+
+export default SplashScreen;
+
+const {height} = Dimensions.get("screen");
+const height_logo = height * 0.28;
 
 const styles = StyleSheet.create({
-  BigContainer:{
-      flex:1,
-      backgroundColor:'#fff',
+  container: {
+    flex: 1, 
+    backgroundColor: '#009387'
   },
-  ExtraSpaceUp:{
-    flex:1,
-    backgroundColor:'#fff',
+  header: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center'
   },
-  BoxLayout:{
-    flex:3,
-    flexDirection:'row',
-    //justifyContent:'center',
-    alignContent:'center',
-    backgroundColor:'#fff',
-    //width:'95%',
+  footer: {
+      flex: 1,
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingVertical: 50,
+      paddingHorizontal: 30
   },
-  ExtraSpaceDown:{
-    flex:1,
-    backgroundColor:'#fff',
+  logo: {
+      width: height_logo,
+      height: height_logo
   },
-  LeftBox:{
-    flex:1,
-    
-    backgroundColor:'#fff',
-    marginRight:'2.5%',
-    marginLeft:'10%',
-    marginVertical:'5%',
-},
-  RightBox:{
-    flex:1,
-    backgroundColor:'#fff',
-    marginLeft:'2.5%',
-    marginRight:'7%',
-    marginVertical:'5%',
+  title: {
+      color: '#05375a',
+      fontSize: 30,
+      fontWeight: 'bold'
   },
-  LeftBox1:{
-    flex:1,
-    backgroundColor:'#fff',
-    marginBottom:'15%',
-    borderRadius:15,
-    elevation:10,
-    justifyContent:'center',
-    alignItems:'center',
+  text: {
+      color: 'grey',
+      marginTop:5
   },
-  LeftBox2:{
-    flex:1,
-    backgroundColor:'#fff',
-    borderRadius:15,
-    elevation:10,
-    justifyContent:'center',
-    alignItems:'center',
+  button: {
+      alignItems: 'flex-end',
+      marginTop: 30
   },
-  RightBox1:{
-    flex:3,
-    backgroundColor:'#fff',
-    marginBottom:'15%',
-    borderRadius:15,
-    elevation:10,
-    justifyContent:'center',
-    alignItems:'center',
+  signIn: {
+      width: 150,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 50,
+      flexDirection: 'row'
   },
-  RightBox2:{
-    flex:1,
-    backgroundColor:'#fff',
-    borderRadius:15,
-    elevation:10,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  title:{
-    fontSize:20,
-    color:"#696969"
-  },
+  textSign: {
+      color: 'white',
+      fontWeight: 'bold'
+  }
 });
-export default Home;
+

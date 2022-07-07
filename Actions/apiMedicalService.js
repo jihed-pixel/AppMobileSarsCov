@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://1288-41-229-134-61.ngrok.io/";
+const baseUrl = "https://test.yobitrust.com:8443/HachCovid19Back-0.0.1-SNAPSHOT/";
 export default {
   medicalService(url = baseUrl) {
     return {

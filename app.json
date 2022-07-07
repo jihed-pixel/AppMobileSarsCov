@@ -3,6 +3,9 @@
     "name": "TestSars",
     "slug": "TestSars",
     "sdkVersion": "45.0.0",
-    "privacy": "public"
+    "privacy": "public",
+    "android": {
+      "package": "com.jihed1803.TestSars"
+    }
   }
 }
